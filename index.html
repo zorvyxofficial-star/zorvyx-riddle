@@ -32,7 +32,7 @@ button.wrong{background:#692d37;border-color:#ff8795}
   <p class="question">ಈ ರಿಡಲ್‌ನ ಸರಿಯಾದ ಉತ್ತರ ಯಾವುದು? 🤔</p>
   <div class="options" id="options">
     <button data-answer="a">A) ಕೋಳಿ 🐔</button>
-    <button data-answer="b">B) Egg Man 🥚</button>
+    <button data-answer="b">B) Egg Man 🥚 with B) ಮೊಟ್ಟೆ 🥚
     <button data-answer="c">C) ಬಾತುಕೋಳಿ 🦆</button>
     <button data-answer="d">D) ಪಾರಿವಾಳ 🕊️</button>
   </div>
@@ -48,11 +48,11 @@ options.forEach(btn=>btn.addEventListener('click',()=>{
   options.forEach(b=>{b.disabled=true;b.classList.remove('correct','wrong')});
   if(btn.dataset.answer==='b'){
     btn.classList.add('correct');
-    result.innerHTML='🎉 <strong>ಸರಿಯಾದ ಉತ್ತರ!</strong><br>ಉತ್ತರ: <strong>Egg Man 🥚</strong><br>ಚೆನ್ನಾಗಿ ಉತ್ತರಿಸಿದ್ದೀರಿ!';
+    result.innerHTML='🎉 <strong>ಸರಿಯಾದ ಉತ್ತರ!</strong><br>ಉತ್ತರ: <strong>ಮೊಟ್ಟೆ 🥚</strong><br>ಚೆನ್ನಾಗಿ ಉತ್ತರಿಸಿದ್ದೀರಿ!';
   }else{
     btn.classList.add('wrong');
     document.querySelector('[data-answer="b"]').classList.add('correct');
-    result.innerHTML='😊 <strong>ಅದು ಸರಿಯಲ್ಲ!</strong><br>ಸರಿಯಾದ ಉತ್ತರ: <strong>Egg Man 🥚</strong><br>ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ!';
+    result.innerHTML='😊 <strong>ಅದು ಸರಿಯಲ್ಲ!</strong><br>ಸರಿಯಾದ ಉತ್ತರ: <strong>ಮೊಟ್ಟೆ 🥚</strong><br>ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ!';
   }
   result.style.display='block';retry.style.display='block';
 }));
