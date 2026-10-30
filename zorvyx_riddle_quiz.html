@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="kn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZORVYX Riddle Quiz</title>
+<style>
+:root{color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(160deg,#17152b,#101827 60%,#241323);color:#fff;font-family:system-ui,"Noto Sans Kannada",sans-serif;display:grid;place-items:center;padding:20px}
+.card{width:min(100%,460px);background:#ffffff10;border:1px solid #ffffff25;border-radius:24px;padding:26px;box-shadow:0 18px 50px #0006}
+.brand{font-size:13px;letter-spacing:3px;color:#ffd166;font-weight:800}
+h1{font-size:27px;margin:10px 0 6px}
+.sub{color:#d5d5e4;margin:0 0 22px}
+.question{font-size:21px;line-height:1.6;margin:0 0 20px}
+.options{display:grid;gap:12px}
+button{width:100%;border:1px solid #ffffff35;border-radius:14px;background:#ffffff12;color:#fff;padding:15px;text-align:left;font-size:17px;font-weight:650;cursor:pointer}
+button:active{transform:scale(.99)}
+button:disabled{cursor:default;opacity:.85}
+button.correct{background:#145c3b;border-color:#42d392}
+button.wrong{background:#692d37;border-color:#ff8795}
+#result{display:none;margin-top:18px;padding:15px;border-radius:14px;background:#ffffff12;line-height:1.6}
+#retry{display:none;margin-top:14px;text-align:center;background:#ffd166;color:#211b25;border:0;text-align:center}
+.foot{font-size:12px;color:#b8b8c9;margin-top:20px;text-align:center}
+</style>
+</head>
+<body>
+<main class="card">
+  <div class="brand">ZORVYX</div>
+  <h1>🧠 ಕನ್ನಡ ರಿಡಲ್ ಚಾಲೆಂಜ್</h1>
+  <p class="sub">ನಿಮ್ಮ ಉತ್ತರ ಆಯ್ಕೆ ಮಾಡಿ!</p>
+  <p class="question">ಈ ರಿಡಲ್‌ನ ಸರಿಯಾದ ಉತ್ತರ ಯಾವುದು? 🤔</p>
+  <div class="options" id="options">
+    <button data-answer="a">A) ಕೋಳಿ 🐔</button>
+    <button data-answer="b">B) Egg Man 🥚</button>
+    <button data-answer="c">C) ಬಾತುಕೋಳಿ 🦆</button>
+    <button data-answer="d">D) ಪಾರಿವಾಳ 🕊️</button>
+  </div>
+  <div id="result" aria-live="polite"></div>
+  <button id="retry">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ</button>
+  <div class="foot">ನಿಮ್ಮ ಆಯ್ಕೆಯ ಫಲಿತಾಂಶ ಈ ಸಾಧನದಲ್ಲೇ ಕಾಣಿಸುತ್ತದೆ.</div>
+</main>
+<script>
+const options=document.querySelectorAll('#options button');
+const result=document.getElementById('result');
+const retry=document.getElementById('retry');
+options.forEach(btn=>btn.addEventListener('click',()=>{
+  options.forEach(b=>{b.disabled=true;b.classList.remove('correct','wrong')});
+  if(btn.dataset.answer==='b'){
+    btn.classList.add('correct');
+    result.innerHTML='🎉 <strong>ಸರಿಯಾದ ಉತ್ತರ!</strong><br>ಉತ್ತರ: <strong>Egg Man 🥚</strong><br>ಚೆನ್ನಾಗಿ ಉತ್ತರಿಸಿದ್ದೀರಿ!';
+  }else{
+    btn.classList.add('wrong');
+    document.querySelector('[data-answer="b"]').classList.add('correct');
+    result.innerHTML='😊 <strong>ಅದು ಸರಿಯಲ್ಲ!</strong><br>ಸರಿಯಾದ ಉತ್ತರ: <strong>Egg Man 🥚</strong><br>ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ!';
+  }
+  result.style.display='block';retry.style.display='block';
+}));
+retry.addEventListener('click',()=>{
+  options.forEach(b=>{b.disabled=false;b.classList.remove('correct','wrong')});
+  result.style.display='none';retry.style.display='none';
+});
+</script>
+</body>
+</html>
